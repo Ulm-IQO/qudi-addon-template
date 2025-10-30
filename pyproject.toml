@@ -1,6 +1,87 @@
 [build-system]
 requires = [
-    "setuptools>=42",
+    "setuptools>=61.0",
+    "setuptools-scm>=8.0",
     "wheel"
 ]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "qudi-addon-template"
+dynamic = ["version"]
+description = "qudi package template for addons"
+readme = "README.md"
+keywords = [
+    "qudi",
+    "diamond",
+    "quantum",
+    "confocal",
+    "experiment",
+    "lab",
+    "laboratory",
+    "instrumentation",
+    "instrument",
+    "modular",
+    "measurement",
+]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+
+    "Environment :: Win32 (MS Windows)",
+    "Environment :: X11 Applications",
+    "Environment :: MacOS X",
+
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: End Users/Desktop",
+
+    "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
+
+    "Natural Language :: English",
+
+    "Operating System :: Microsoft :: Windows :: Windows 8",
+    "Operating System :: Microsoft :: Windows :: Windows 8.1",
+    "Operating System :: Microsoft :: Windows :: Windows 10",
+    "Operating System :: Microsoft :: Windows :: Windows 11",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: Unix",
+    "Operating System :: POSIX :: Linux",
+
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+
+    "Topic :: Scientific/Engineering",
+]
+requires-python = ">=3.9, <3.11"
+dependencies = [
+    'qudi-core>=1.6.0',
+    'numpy>=1.24.4,<2.0',
+    'pyqtgraph>=0.13.3',
+    'PySide2',  # get fixed version from core
+]
+
+[project.urls]
+Homepage = "https://github.com/Ulm-IQO/qudi-addon-template"
+Repository = "https://github.com/Ulm-IQO/qudi-addon-template.git"
+"Bug Tracker" = "https://github.com/Ulm-IQO/qudi-addon-template/issues"
+
+[tool.setuptools.dynamic]
+version = {file = "VERSION"}
+
+[project.optional-dependencies]
+dev-test = ["pytest", "pytest-qt==4.4.0", "coverage"]
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.format]
+quote-style = "preserve"
+skip-magic-trailing-comma = true
+
+[tool.ruff.lint]
+ignore = [
+    "ERA001",  # Commented-out code
+    "SLF001",  # Private member accessed
+    "N803",  # Argument name should be lowercase
+    "N806",  # Variable in function should be lowercase
+    "C901",  # Init method too complex
+]
